@@ -904,6 +904,7 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 
 
 
+
 <form class="sim" id="sim" novalidate>
   <div class="prog" aria-hidden="true"><i></i></div>
   <div class="steps"></div>
@@ -1070,8 +1071,8 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
       _subject:'Demande d’estimation — '+p[1]+' — '+f.name.value+(f.city.value?' ('+f.city.value+')':''),_replyto:f.email.value||undefined,_template:'table',_captcha:'false',_honey:f.website.value,
       _autoresponse:'Bonjour '+f.name.value+',\n\nNous avons bien reçu votre demande ('+p[1]+(A.surface?', '+A.surface+' m²':'')+'). Marie ou Alexandre l’étudient et reviennent vers vous le plus rapidement possible avec une première estimation personnalisée, travaux et honoraires compris.\n\nÀ très vite,\nMarie & Alexandre Favier — DMB & CO\n23 rue des Pins Francs, 33210 Toulenne · 06 74 48 30 65 / 06 99 06 59 94 · contact@dmbandco.fr'};
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})}).then(function(r){
-      if(r.ok){ steps.innerHTML='<div class="ok"><strong>Merci, votre demande est bien transmise.</strong><p>Marie ou Alexandre étudient votre projet et reviennent vers vous le plus rapidement possible avec une première estimation.</p>'+(f.email.value?'<p>Un e-mail de confirmation vient de vous être envoyé à '+esc(f.email.value)+'.</p>':'')+'</div>'; back.className='back'; prog.style.width='100%'; }
-      else { btn.disabled=false; st.className='status err'; st.textContent=(r.j&&(r.j.error||r.j.message))||'Votre demande n’a pas pu être transmise. Appelez-nous au 06 99 06 59 94.'; if(r.j&&r.j.field&&f[r.j.field]) f[r.j.field].focus(); }
+      if(r.ok&&!(r.j&&String(r.j.success)==='false')){ steps.innerHTML='<div class="ok"><strong>Merci, votre demande est bien transmise.</strong><p>Marie ou Alexandre étudient votre projet et reviennent vers vous le plus rapidement possible avec une première estimation.</p>'+(f.email.value?'<p>Un e-mail de confirmation vient de vous être envoyé à '+esc(f.email.value)+'.</p>':'')+'</div>'; back.className='back'; prog.style.width='100%'; }
+      else { btn.disabled=false; st.className='status err'; var msg=(r.j&&(r.j.error||r.j.message))||''; st.textContent=/activat/i.test(msg)?'Le formulaire est en cours d’activation. Appelez-nous au 06 99 06 59 94 ou écrivez à contact@dmbandco.fr.':(msg||'Votre demande n’a pas pu être transmise. Appelez-nous au 06 99 06 59 94.'); if(r.j&&r.j.field&&f[r.j.field]) f[r.j.field].focus(); }
     }).catch(function(){
       btn.disabled=false; st.className='status err';
       var sub=encodeURIComponent('Demande de devis depuis le site : '+p[1]);
