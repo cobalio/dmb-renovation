@@ -32,12 +32,15 @@
 <meta property="og:description" content="Rénovation de maison, cuisine, salle de bain, extension, aménagement extérieur, pool house, architecture d’intérieur, maîtrise d’œuvre : tous nos métiers.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Urbanist:wght@400;500;600;700&display=swap">
+<link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/crimson-pro-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Rénovation de maison","url":"https://dmb-renovation.fr/prestations/renovation-maison/"},{"@type":"ListItem","position":2,"name":"Rénovation de salle de bain","url":"https://dmb-renovation.fr/prestations/renovation-salle-de-bain/"},{"@type":"ListItem","position":3,"name":"Rénovation de cuisine","url":"https://dmb-renovation.fr/prestations/renovation-cuisine/"},{"@type":"ListItem","position":4,"name":"Extension de maison","url":"https://dmb-renovation.fr/prestations/extension-maison/"},{"@type":"ListItem","position":5,"name":"Aménagement extérieur","url":"https://dmb-renovation.fr/prestations/amenagement-exterieur/"},{"@type":"ListItem","position":6,"name":"Pool house","url":"https://dmb-renovation.fr/prestations/pool-house/"},{"@type":"ListItem","position":7,"name":"Espace professionnel","url":"https://dmb-renovation.fr/prestations/espace-professionnel/"},{"@type":"ListItem","position":8,"name":"Maîtrise d’œuvre","url":"https://dmb-renovation.fr/prestations/maitrise-oeuvre/"},{"@type":"ListItem","position":9,"name":"Architecture d’intérieur","url":"https://dmb-renovation.fr/prestations/architecture-interieur/"},{"@type":"ListItem","position":10,"name":"Décoration d’intérieur","url":"https://dmb-renovation.fr/prestations/decoration-interieur/"},{"@type":"ListItem","position":11,"name":"Relooking & home staging","url":"https://dmb-renovation.fr/prestations/relooking-home-staging/"},{"@type":"ListItem","position":12,"name":"Autorisations d’urbanisme","url":"https://dmb-renovation.fr/prestations/autorisation-urbanisme/"},{"@type":"ListItem","position":13,"name":"Visite conseil avant achat","url":"https://dmb-renovation.fr/prestations/visite-conseil-avant-achat/"},{"@type":"ListItem","position":14,"name":"Chambre d’amis & dortoir","url":"https://dmb-renovation.fr/prestations/chambre-amis-dortoir/"}]}</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/urbanist-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:normal;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:italic;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-italic.woff2) format('woff2')}
+
 :root{
   --bg:#F6F2EC; --bg-2:#EAE3D9; --surface:#FFFFFF; --ink:#2C2C2C; --ink-2:#5A544D; --line:#DED6CB;
   --accent-text:#3A5C48; --label:#4F7560;
@@ -743,6 +746,14 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .team-card p{color:var(--ink-2)}
 @media (max-width:759px){ .team-grid{grid-template-columns:minmax(0,1fr)} }
 .footer-brandline{margin:36px 0 10px;font-size:.92rem;line-height:1.55;color:var(--on-dark-2);max-width:72ch}
+
+/* Mobile : zones tactiles >= 48 px, animation d'image principale désactivée */
+.brand{min-height:48px}
+.icon-btn{width:48px;height:48px}
+.footer-cols a,.footer-bottom a,.crumbs a,.gf-tel,.gf-rate,.contact-list a,.footer .linklike{display:inline-flex;align-items:center;min-height:48px}
+.gf-tel{margin-top:-14px}
+.crumbs a{min-width:48px;justify-content:center}
+@media (max-width:899px){.hero-media img{animation:none}}
 </style>
 </head>
 <body>

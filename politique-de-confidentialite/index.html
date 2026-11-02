@@ -32,12 +32,15 @@
 <meta property="og:description" content="Politique de confidentialité du site DMB &amp; CO, rénovation et maîtrise d&#x27;œuvre à Langon.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Urbanist:wght@400;500;600;700&display=swap">
+<link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/crimson-pro-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Politique de confidentialité"}</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/urbanist-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:normal;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:italic;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-italic.woff2) format('woff2')}
+
 :root{
   --bg:#F6F2EC; --bg-2:#EAE3D9; --surface:#FFFFFF; --ink:#2C2C2C; --ink-2:#5A544D; --line:#DED6CB;
   --accent-text:#3A5C48; --label:#4F7560;
@@ -743,6 +746,14 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .team-card p{color:var(--ink-2)}
 @media (max-width:759px){ .team-grid{grid-template-columns:minmax(0,1fr)} }
 .footer-brandline{margin:36px 0 10px;font-size:.92rem;line-height:1.55;color:var(--on-dark-2);max-width:72ch}
+
+/* Mobile : zones tactiles >= 48 px, animation d'image principale désactivée */
+.brand{min-height:48px}
+.icon-btn{width:48px;height:48px}
+.footer-cols a,.footer-bottom a,.crumbs a,.gf-tel,.gf-rate,.contact-list a,.footer .linklike{display:inline-flex;align-items:center;min-height:48px}
+.gf-tel{margin-top:-14px}
+.crumbs a{min-width:48px;justify-content:center}
+@media (max-width:899px){.hero-media img{animation:none}}
 </style>
 </head>
 <body>

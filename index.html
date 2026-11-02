@@ -32,12 +32,15 @@
 <meta property="og:description" content="Entreprise de rénovation à Langon : maître d’œuvre et architecte d’intérieur. Rénovation, extension, aménagement en Sud-Gironde. Un seul interlocuteur.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Urbanist:wght@400;500;600;700&display=swap">
+<link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/crimson-pro-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"GeneralContractor","name":"DMB & CO","description":"Entreprise de rénovation et cabinet de maîtrise d’œuvre à Langon, Sud-Gironde : rénovation, extension, aménagement intérieur et extérieur.","url":"https://dmb-renovation.fr/","email":"contact@dmbandco.fr","telephone":"+33699065994","address":{"@type":"PostalAddress","streetAddress":"23 rue des Pins Francs","postalCode":"33210","addressLocality":"Toulenne","addressCountry":"FR","addressRegion":"Nouvelle-Aquitaine"},"geo":{"@type":"GeoCoordinates","latitude":44.556205,"longitude":-0.262843},"areaServed":[{"@type":"City","name":"Langon"},{"@type":"City","name":"Toulenne"},{"@type":"City","name":"Coimères"},{"@type":"AdministrativeArea","name":"Sud-Gironde"},{"@type":"AdministrativeArea","name":"Gironde"}],"sameAs":["https://www.instagram.com/dmbandco_mf/","https://www.google.com/maps/search/?api=1&query=DMB%26CO%20Toulenne&query_place_id=ChIJ7ba8GGNtVQ0RunkT2WFV_F4","https://www.google.com/maps/search/?api=1&query=Marie%20Favier%20Architecte%20d%27Int%C3%A9rieur%20Langon&query_place_id=ChIJMVpYNoZGv4MRtX7V0-1Z9Qo"],"founder":[{"@type":"Person","name":"Marie Favier","jobTitle":"Architecte d’intérieur","telephone":"+33674483065","sameAs":"https://www.google.com/maps/search/?api=1&query=Marie%20Favier%20Architecte%20d%27Int%C3%A9rieur%20Langon&query_place_id=ChIJMVpYNoZGv4MRtX7V0-1Z9Qo"},{"@type":"Person","name":"Alexandre Favier","jobTitle":"Maître d’œuvre","telephone":"+33699065994","sameAs":"https://www.google.com/maps/search/?api=1&query=DMB%26CO%20Toulenne&query_place_id=ChIJ7ba8GGNtVQ0RunkT2WFV_F4"}],"@id":"https://dmb-renovation.fr/#organization","alternateName":["DMB Rénovation","DMB&CO","DMB and CO","DMB & CO Langon"],"legalName":"DMB & CO","image":"https://dmb-renovation.fr/img/dmb-and-co-renovation-langon-partage.jpg","logo":"https://dmb-renovation.fr/img/logo-dmb-and-co-512.png","hasMap":"https://www.google.com/maps/search/?api=1&query=DMB%26CO%20Toulenne&query_place_id=ChIJ7ba8GGNtVQ0RunkT2WFV_F4"},{"@type":"WebSite","@id":"https://dmb-renovation.fr/#website","url":"https://dmb-renovation.fr/","name":"DMB & CO","alternateName":["DMB Rénovation","dmb-renovation.fr"],"inLanguage":"fr-FR","publisher":{"@id":"https://dmb-renovation.fr/#organization"}},{"@type":"WebPage","@id":"https://dmb-renovation.fr/#webpage","url":"https://dmb-renovation.fr/","name":"DMB & CO (DMB Rénovation) · Rénovation et maîtrise d’œuvre à Langon, Sud-Gironde","description":"DMB & CO (DMB Rénovation), cabinet de maîtrise d’œuvre et d’architecture d’intérieur à Langon : rénovation, extension, aménagement intérieur et extérieur en Sud-Gironde. Un seul interlocuteur, de la conception à la remise des clés.","isPartOf":{"@id":"https://dmb-renovation.fr/#website"},"about":{"@id":"https://dmb-renovation.fr/#organization"},"inLanguage":"fr-FR","primaryImageOfPage":"https://dmb-renovation.fr/img/dmb-and-co-renovation-langon-partage.jpg"}]}</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/urbanist-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:normal;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:italic;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-italic.woff2) format('woff2')}
+
 :root{
   --bg:#F6F2EC; --bg-2:#EAE3D9; --surface:#FFFFFF; --ink:#2C2C2C; --ink-2:#5A544D; --line:#DED6CB;
   --accent-text:#3A5C48; --label:#4F7560;
@@ -878,6 +881,14 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .sim .ok strong{font-family:var(--serif);font-weight:500;font-size:1.5rem}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 @media (max-width:420px){ .sim .row2{grid-template-columns:1fr} .sim .cards,.sim .cards.c3{grid-template-columns:1fr} }
+
+/* Mobile : zones tactiles >= 48 px, animation d'image principale désactivée */
+.brand{min-height:48px}
+.icon-btn{width:48px;height:48px}
+.footer-cols a,.footer-bottom a,.crumbs a,.gf-tel,.gf-rate,.contact-list a,.footer .linklike{display:inline-flex;align-items:center;min-height:48px}
+.gf-tel{margin-top:-14px}
+.crumbs a{min-width:48px;justify-content:center}
+@media (max-width:899px){.hero-media img{animation:none}}
 </style>
 </head>
 <body>
@@ -933,7 +944,7 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 <span id="top"></span>
 
 <section class="hero">
-  <div class="hero-media"><img src="img/renovation-sejour-arches-beton-cire-toulenne.jpg" alt="Séjour rénové par DMB &amp; CO : arches en béton ciré, niches en bois et fauteuils" width="1402" height="789" fetchpriority="high" decoding="async"></div>
+  <div class="hero-media"><img src="img/renovation-sejour-arches-beton-cire-toulenne-1402.webp" srcset="img/renovation-sejour-arches-beton-cire-toulenne-800.webp 800w, img/renovation-sejour-arches-beton-cire-toulenne-1402.webp 1402w" sizes="100vw" alt="Séjour rénové par DMB &amp; CO : arches en béton ciré, niches en bois et fauteuils" width="1402" height="789" fetchpriority="high" decoding="async"></div>
   <div class="wrap hero-inner">
     <div class="hero-panel">
       <div class="duo-chip">

@@ -32,12 +32,15 @@
 <meta property="og:description" content="Cuisine ouverte, îlot, rangements sur mesure : DMB &amp; CO conçoit et rénove votre cuisine à Langon et dans le Sud-Gironde, artisans et chantier compris.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_FR">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,500;0,600;1,400&family=Urbanist:wght@400;500;600;700&display=swap">
+<link rel="preload" href="/fonts/urbanist-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/crimson-pro-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Service","name":"Rénovation de cuisine","serviceType":"Rénovation de cuisine","areaServed":"Sud-Gironde","provider":{"@type":"GeneralContractor","name":"DMB & CO","url":"https://dmb-renovation.fr/","telephone":"+33699065994","email":"contact@dmbandco.fr","address":{"@type":"PostalAddress","streetAddress":"23 rue des Pins Francs","postalCode":"33210","addressLocality":"Toulenne","addressCountry":"FR","addressRegion":"Nouvelle-Aquitaine"},"areaServed":[{"@type":"City","name":"Langon"},{"@type":"City","name":"Toulenne"},{"@type":"City","name":"Coimères"},{"@type":"AdministrativeArea","name":"Sud-Gironde"},{"@type":"AdministrativeArea","name":"Gironde"}],"@id":"https://dmb-renovation.fr/#organization","alternateName":["DMB Rénovation","DMB&CO","DMB and CO","DMB & CO Langon"],"legalName":"DMB & CO","image":"https://dmb-renovation.fr/img/dmb-and-co-renovation-langon-partage.jpg","logo":"https://dmb-renovation.fr/img/logo-dmb-and-co-512.png","hasMap":"https://www.google.com/maps/search/?api=1&query=DMB%26CO%20Toulenne&query_place_id=ChIJ7ba8GGNtVQ0RunkT2WFV_F4"},"description":"Cuisine ouverte, îlot, rangements sur mesure : DMB & CO conçoit et rénove votre cuisine à Langon et dans le Sud-Gironde, artisans et chantier compris."},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://dmb-renovation.fr/"},{"@type":"ListItem","position":2,"name":"Nos métiers","item":"https://dmb-renovation.fr/prestations/"},{"@type":"ListItem","position":3,"name":"Rénovation de cuisine"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel budget pour une cuisine ?","acceptedAnswer":{"@type":"Answer","text":"Il dépend de l’équipement, de la part de sur-mesure et des travaux de réseaux à prévoir. Nous distinguons toujours le mobilier des travaux dans le chiffrage, que nous vous présentons après une première estimation et une visite."}},{"@type":"Question","name":"Cuisine ouverte : faut-il un bureau d'études ?","acceptedAnswer":{"@type":"Answer","text":"Si le mur à abattre est porteur, oui. Alexandre le vérifie et fait intervenir un bureau d'études structure si nécessaire."}},{"@type":"Question","name":"Travaillez-vous avec un cuisiniste ?","acceptedAnswer":{"@type":"Answer","text":"Avec des menuisiers et cuisinistes locaux que nous connaissons. Vous pouvez aussi venir avec le vôtre, nous coordonnons la pose."}}]}]}</script>
 <script>document.documentElement.classList.add('js');</script>
 <style>
+@font-face{font-family:'Urbanist';font-style:normal;font-weight:100 900;font-display:swap;src:url(/fonts/urbanist-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:normal;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-normal.woff2) format('woff2')}
+@font-face{font-family:'Crimson Pro';font-style:italic;font-weight:200 900;font-display:swap;src:url(/fonts/crimson-pro-latin-wght-italic.woff2) format('woff2')}
+
 :root{
   --bg:#F6F2EC; --bg-2:#EAE3D9; --surface:#FFFFFF; --ink:#2C2C2C; --ink-2:#5A544D; --line:#DED6CB;
   --accent-text:#3A5C48; --label:#4F7560;
@@ -743,6 +746,14 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .team-card p{color:var(--ink-2)}
 @media (max-width:759px){ .team-grid{grid-template-columns:minmax(0,1fr)} }
 .footer-brandline{margin:36px 0 10px;font-size:.92rem;line-height:1.55;color:var(--on-dark-2);max-width:72ch}
+
+/* Mobile : zones tactiles >= 48 px, animation d'image principale désactivée */
+.brand{min-height:48px}
+.icon-btn{width:48px;height:48px}
+.footer-cols a,.footer-bottom a,.crumbs a,.gf-tel,.gf-rate,.contact-list a,.footer .linklike{display:inline-flex;align-items:center;min-height:48px}
+.gf-tel{margin-top:-14px}
+.crumbs a{min-width:48px;justify-content:center}
+@media (max-width:899px){.hero-media img{animation:none}}
 </style>
 </head>
 <body>
