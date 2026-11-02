@@ -1,3 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://www.dmb-renovation.fr/sitemap.xml
+Disallow: /home/
+
+Sitemap: https://dmb-renovation.fr/sitemap.xml
