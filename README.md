@@ -106,12 +106,13 @@ Questionnaire en 7 étapes, une question par écran, barre de progression :
 6. Accompagnement et suivi de chantier : oui / non / je ne sais pas
 7. Coordonnées « pour obtenir votre estimation personnalisée »
 
-Le visiteur **ne voit aucun montant**. Une fourchette est calculée en coulisse (barème interne : €/m² par type de projet, forfaits par pièce, +8 à 15 % de maîtrise d'œuvre si suivi, +80 €/m² de conception si architecte) et **envoyée avec toutes les réponses à DMB & CO** :
+Le visiteur **ne voit aucun montant**. Une fourchette est calculée en coulisse (barème interne : €/m² par type de projet, forfaits par pièce, +8 à 15 % de maîtrise d'œuvre si suivi, +80 €/m² de conception si architecte) et **envoyée avec toutes les réponses par e-mail à contact@dmbandco.fr** (relais FormSubmit, `https://formsubmit.co/ajax/contact@dmbandco.fr`, variable `ENDPOINT` dans le `<script>` en bas des trois pages). L'e-mail arrive sous forme de tableau, le « Répondre à » est l'adresse du visiteur, et le visiteur reçoit un accusé de réception automatique.
 
-- vers **ArtiMano** (compte contact@dmbandco.fr, vitrine `dmb-and-co`) : la demande crée le client s'il n'existe pas, une conversation avec le détail des réponses, une notification, et un e-mail ;
-- en cas d'indisponibilité du service, un lien « envoyer par e-mail » vers contact@dmbandco.fr et le téléphone d'Alexandre s'affichent.
+- **Activation (une seule fois)** : au tout premier envoi, FormSubmit adresse à contact@dmbandco.fr un e-mail « Activate form » : cliquer le bouton. Tant que ce n'est pas fait, les demandes sont retenues ; ensuite elles arrivent instantanément. Pour changer l'adresse de réception, remplacer l'e-mail dans `ENDPOINT` (dans les trois pages) et refaire l'activation.
+- En cas d'indisponibilité du relais, la page affiche un lien « envoyer par e-mail » pré-rempli et le téléphone d'Alexandre.
+- Option prévue mais non activée : envoi parallèle vers ArtiMano (vitrine `dmb-and-co`, compte contact@dmbandco.fr) via `https://artimano.fr/api/public/vitrine/dmb-and-co/demande` une fois cet endpoint déployé.
 
-Le point d'envoi est `https://artimano.fr/api/public/vitrine/dmb-and-co/demande` (variable `ENDPOINT` dans le `<script>` en bas des trois pages). Le barème et les libellés des questions sont dans la variable `D` du même script : modifier là, dans les trois pages à l'identique (`simulateur/index.html`, `index.html`, `contact/index.html`).
+Le barème et les libellés des questions sont dans la variable `D` du même script : modifier là, dans les trois pages à l'identique (`simulateur/index.html`, `index.html`, `contact/index.html`).
 
 Anti-spam : champ caché « Site web » (pot de miel), limite de 5 envois / 10 minutes / adresse IP côté ArtiMano, case de consentement obligatoire.
 
