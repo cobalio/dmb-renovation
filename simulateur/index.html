@@ -756,6 +756,7 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .sim .qs{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--label);font-weight:700}
 .sim .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
 .sim .cards.c3{grid-template-columns:repeat(auto-fill,minmax(170px,1fr))}
+.sim .cards.c2{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 .sim .card{position:relative;display:grid;gap:4px;padding:16px 18px;border:1.5px solid var(--line);border-radius:16px;background:var(--surface);cursor:pointer;min-height:64px;transition:border-color .15s,box-shadow .15s}
 .sim .card:hover{border-color:var(--sage)}
 .sim .card input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
@@ -847,6 +848,8 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 </section>
 <section class="section"><div class="wrap">
 
+
+
 <form class="sim" id="sim" novalidate>
   <div class="prog" aria-hidden="true"><i></i></div>
   <div class="steps"></div>
@@ -935,7 +938,7 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 
 <script>
 (function(){
-  var D={"projets": [["maison", "Rénover une maison", "Sols, murs, cuisine, salle de bain, toiture, isolation…", "m2"], ["appart", "Rénover un appartement", "Rafraîchissement ou rénovation complète", "m2"], ["sdb", "Refaire une salle de bain", "Douche à l’italienne, béton ciré, meubles sur mesure", "forfait"], ["cuisine", "Refaire une cuisine", "Ouverte, fermée, avec îlot…", "forfait"], ["extension", "Agrandir : extension ou surélévation", "Ossature bois, maçonnée", "m2"], ["exterieur", "Pool house ou aménagement extérieur", "Pool house, terrasse, salon encastré, cuisine d’été", "forfait"], ["pro", "Aménager un espace professionnel", "Boutique, bureau, cabinet, local", "m2"], ["conception", "Être accompagné(e) par une architecte d’intérieur", "Plans, 3D, choix des matériaux, suivi", "formule"]], "etat": {"maison": [["rafraichir", "Rafraîchir", "Peinture, sols, petits travaux", 150, 300], ["renover", "Rénover entièrement", "Cuisine et salle de bain simples, réseaux aux normes, sols et murs", 800, 1800], ["restructurer", "Tout restructurer", "Cloisons, structure, toiture, isolation, mise à niveau technique", 1200, 2200]], "appart": [["rafraichir", "Rafraîchir", "Peinture, sols, petits travaux", 150, 300], ["renover", "Rénover entièrement", "Cuisine et salle de bain simples, réseaux aux normes", 400, 900], ["restructurer", "Tout restructurer", "Cloisons, réseaux, mise à niveau technique", 800, 1500]], "pro": [["rafraichir", "Rafraîchir", "Peinture, sols, éclairage", 150, 300], ["renover", "Rénover entièrement", "Agencement, réseaux, sols et murs", 400, 1200], ["restructurer", "Tout restructurer", "Cloisons, façade, mise aux normes", 800, 1500]]}, "taille": {"sdb": [["petite", "Petite", "Moins de 5 m²", 3000, 7000], ["moyenne", "Moyenne", "5 à 8 m²", 6000, 11000], ["grande", "Grande", "Plus de 8 m², double vasque, baignoire + douche", 9000, 15000]], "cuisine": [["petite", "Petite", "Moins de 8 m²", 5000, 12000], ["moyenne", "Moyenne", "8 à 15 m²", 10000, 20000], ["grande", "Grande", "Plus de 15 m², îlot, électroménager intégré", 18000, 30000]], "exterieur": [["terrasse", "Terrasse ou salon extérieur", "Terrasse, salon encastré, pergola", 8000, 25000], ["cuisine-ete", "Cuisine d’été", "Plan de travail, évier, plancha, rangements", 15000, 40000], ["pool-house", "Pool house", "Abri simple à pool house aménagé", 15000, 60000]]}, "extension": [1500, 2500], "finition": [["essentiel", "Essentiel", "Matériaux simples et durables"], ["confort", "Confort", "Le bon équilibre, nos choix habituels"], ["premium", "Haut de gamme", "Sur-mesure, matériaux nobles"]], "accomp": [["non", "Les travaux seulement", "Alexandre pilote le chantier"], ["conseils", "Quelques conseils déco", "Marie vous aide à faire les bons choix"], ["complet", "La conception complète", "Plans, 3D, matériaux et suivi par Marie"]], "formules": [["potentiel", "Étude du potentiel", "Visite, conseils, premières pistes", 600, 900], ["complete", "Étude complète", "Plans, 3D, planches matériaux", 1200, 1800], ["plan-realite", "Du plan à la réalité", "Conception et suivi complet des travaux", 80, 80]], "delai": [["asap", "Dès que possible", ""], ["3mois", "Dans les 3 mois", ""], ["6mois", "Dans 3 à 6 mois", ""], ["plus-tard", "Plus tard, je me renseigne", ""]]}, ENDPOINT="https://artimano.fr/api/public/vitrine/dmb-and-co/demande", SOURCE="dmb-renovation.fr/simulateur";
+  var D={"projets": [["complete", "Rénovation complète", "Toute la maison ou tout l’appartement : sols, murs, cuisine, salle de bain, réseaux…"], ["partielle", "Rénovation partielle", "Une pièce ou un espace : salle de bain, cuisine, séjour, extérieur…"], ["extension", "Extension", "Agrandir : extension, surélévation, pool house"], ["archi", "Architecture d’intérieur", "Plans, 3D, matériaux, suivi — avec Marie"]], "bien": [["maison", "Une maison", "Toiture, isolation, façades et intérieurs possibles", 800, 1800], ["appart", "Un appartement", "Sols, murs, cuisine et salle de bain, réseaux aux normes", 400, 900], ["pro", "Un local professionnel", "Boutique, bureau, cabinet", 400, 1200]], "piece": [["sdb", "La salle de bain", "Douche à l’italienne, béton ciré, meubles sur mesure", "forfait", 0, 0], ["cuisine", "La cuisine", "Ouverte, fermée, avec îlot…", "forfait", 0, 0], ["piece", "Une pièce à vivre ou une chambre", "Peinture, sols, rangements, cloisons", "m2", 150, 400], ["exterieur", "L’extérieur", "Terrasse, salon encastré, cuisine d’été", "forfait", 0, 0]], "taille": {"sdb": [["petite", "Petite", "Moins de 5 m²", 3000, 7000], ["moyenne", "Moyenne", "5 à 8 m²", 6000, 11000], ["grande", "Grande", "Plus de 8 m², double vasque, baignoire + douche", 9000, 15000]], "cuisine": [["petite", "Petite", "Moins de 8 m²", 5000, 12000], ["moyenne", "Moyenne", "8 à 15 m²", 10000, 20000], ["grande", "Grande", "Plus de 15 m², îlot, électroménager intégré", 18000, 30000]], "exterieur": [["terrasse", "Terrasse ou salon extérieur", "Terrasse, salon encastré, pergola", 8000, 25000], ["cuisine-ete", "Cuisine d’été", "Plan de travail, évier, plancha, rangements", 15000, 40000]]}, "ext": [["extension", "Une extension de plain-pied", "Ossature bois ou maçonnée", "m2", 1500, 2500], ["surelevation", "Une surélévation", "Un étage en plus", "m2", 1800, 2800], ["pool-house", "Un pool house", "Abri simple à pool house aménagé", "forfait", 15000, 60000]], "finition": [["essentiel", "Essentiel", "Matériaux simples et durables"], ["confort", "Confort", "Le bon équilibre, nos choix habituels"], ["premium", "Haut de gamme", "Sur-mesure, matériaux nobles"]], "accomp": [["non", "Les travaux seulement", "Alexandre pilote le chantier"], ["conseils", "Quelques conseils déco", "Marie vous aide à faire les bons choix"], ["complet", "La conception complète", "Plans, 3D, matériaux et suivi par Marie"]], "formules": [["potentiel", "Étude du potentiel", "Visite, conseils, premières pistes", 600, 900], ["complete", "Étude complète", "Plans, 3D, planches matériaux", 1200, 1800], ["plan-realite", "Du plan à la réalité", "Conception et suivi complet des travaux", 80, 80]], "delai": [["asap", "Dès que possible", ""], ["3mois", "Dans les 3 mois", ""], ["6mois", "Dans 3 à 6 mois", ""], ["plus-tard", "Plus tard, je me renseigne", ""]]}, ENDPOINT="https://artimano.fr/api/public/vitrine/dmb-and-co/demande", SOURCE="dmb-renovation.fr/simulateur";
   var f=document.getElementById('sim'); if(!f) return;
   var steps=f.querySelector('.steps'), prog=f.querySelector('.prog i'), back=f.querySelector('.back');
   var A={};               // réponses
@@ -947,19 +950,36 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
     return '<div class="cards '+(cls||'')+'">'+list.map(function(o){return '<label class="card"><input type="radio" name="'+name+'" value="'+esc(o[0])+'"><b>'+esc(o[1])+'</b>'+(o[2]?'<small>'+esc(o[2])+'</small>':'')+'</label>'}).join('')+'</div>';
   }
   function projet(){return D.projets.find(function(p){return p[0]===A.projet})||D.projets[0];}
+  function find(list,k){return list.find(function(o){return o[0]===k})||list[0];}
+  function needSurface(){
+    var p=A.projet;
+    if(p==='complete'||p==='archi') return true;
+    if(p==='partielle') return A.piece&&find(D.piece,A.piece)[3]==='m2';
+    if(p==='extension') return A.ext&&find(D.ext,A.ext)[3]==='m2';
+    return false;
+  }
   function flow(){
-    var p=projet(), s=['projet'];
-    if(p[3]==='formule'){ s.push('surface','formule'); }
-    else if(p[3]==='m2'){ s.push('surface'); if(D.etat[p[0]]) s.push('etat'); s.push('finition','accomp'); }
-    else { s.push('taille','finition','accomp'); }
+    var p=A.projet, s=['projet'];
+    if(p==='complete'){ s.push('bien','surface','finition','accomp'); }
+    else if(p==='partielle'){ s.push('piece'); if(A.piece){ if(find(D.piece,A.piece)[3]==='m2') s.push('surface'); else s.push('taille'); } s.push('finition','accomp'); }
+    else if(p==='extension'){ s.push('ext'); if(A.ext){ if(find(D.ext,A.ext)[3]==='m2') s.push('surface'); else s.push('taille'); } s.push('finition','accomp'); }
+    else if(p==='archi'){ s.push('surface','formule'); }
     s.push('delai','coord'); return s;
   }
+  function surfDefaults(){
+    if(A.projet==='extension') return {v:30,max:150,chips:[15,20,30,40,60]};
+    if(A.projet==='partielle') return {v:25,max:120,chips:[12,20,25,35,50]};
+    return {v:100,max:400,chips:[40,60,80,100,130,180]};
+  }
   var SCREENS={
-    projet:function(){return {q:'Quel est votre projet ?',h:cards('projet',D.projets)}},
-    surface:function(){var p=projet(); var t=p[0]==='extension'?'Quelle surface souhaitez-vous créer ?':p[0]==='conception'?'Quelle surface est concernée ?':'Quelle surface est concernée par les travaux ?';
-      return {q:t,h:'<div class="surf"><div class="big"><input type="number" name="surface" min="5" max="600" step="1" inputmode="numeric" value="'+(A.surface||(p[0]==='extension'?30:100))+'"> <span>m²</span></div><input type="range" name="surfr" min="5" max="'+(p[0]==='extension'?150:400)+'" step="5" value="'+(A.surface||(p[0]==='extension'?30:100))+'"><div class="chips">'+(p[0]==='extension'?[15,20,30,40,60]:[40,60,80,100,130,180]).map(function(v){return '<button type="button" data-s="'+v+'">'+v+' m²</button>'}).join('')+'</div></div>',next:true}},
-    etat:function(){return {q:'Dans quel état est le bien, que faut-il faire ?',h:cards('etat',D.etat[projet()[0]],'c3')}},
-    taille:function(){var p=projet(); return {q:p[0]==='exterieur'?'Que souhaitez-vous aménager ?':'Quelle taille fait la pièce ?',h:cards('taille',D.taille[p[0]],'c3')}},
+    projet:function(){return {q:'Quel est votre projet ?',h:cards('projet',D.projets,'c2')}},
+    bien:function(){return {q:'De quel type de bien s’agit-il ?',h:cards('bien',D.bien,'c3')}},
+    piece:function(){return {q:'Quelle pièce souhaitez-vous rénover ?',h:cards('piece',D.piece)}},
+    ext:function(){return {q:'Que souhaitez-vous construire ?',h:cards('ext',D.ext,'c3')}},
+    surface:function(){var d=surfDefaults(), t=A.projet==='extension'?'Quelle surface souhaitez-vous créer ?':A.projet==='partielle'?'Quelle est la surface de la pièce ?':'Quelle surface est concernée ?';
+      return {q:t,h:'<div class="surf"><div class="big"><input type="number" name="surface" min="5" max="600" step="1" inputmode="numeric" value="'+(A.surface||d.v)+'"> <span>m²</span></div><input type="range" name="surfr" min="5" max="'+d.max+'" step="5" value="'+(A.surface||d.v)+'"><div class="chips">'+d.chips.map(function(v){return '<button type="button" data-s="'+v+'">'+v+' m²</button>'}).join('')+'</div></div>',next:true}},
+    taille:function(){var k=A.projet==='extension'?'pool-house':A.piece; var list=k==='pool-house'?[['simple','Abri simple','Local technique, rangement, douche',15000,30000],['amenage','Pool house aménagé','Cuisine d’été, salon, sanitaires',30000,60000]]:D.taille[k];
+      return {q:k==='exterieur'?'Que souhaitez-vous aménager ?':k==='pool-house'?'Quel type de pool house ?':'Quelle taille fait la pièce ?',h:cards('taille',list,'c3')}},
     finition:function(){return {q:'Quel niveau de finition imaginez-vous ?',h:cards('finition',D.finition,'c3')}},
     accomp:function(){return {q:'Souhaitez-vous être accompagné(e) pour la conception ?',h:cards('accomp',D.accomp,'c3')}},
     formule:function(){return {q:'Quelle formule vous correspond ?',h:cards('formule',D.formules,'c3')}},
@@ -973,34 +993,33 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
       '<label class="consent"><input type="checkbox" name="consent" required> J’accepte que mes coordonnées et ma demande soient transmises à DMB &amp; CO pour être recontacté(e). Aucun autre usage.</label>'+
       '<button class="btn btn-primary" type="submit">Recevoir ma première estimation</button><p class="status" role="status" aria-live="polite"></p>'}}
   };
-  function find(list,k){return list.find(function(o){return o[0]===k})||list[0];}
+  function tailleList(){ if(A.projet==='extension') return [['simple','Abri simple','',15000,30000],['amenage','Pool house aménagé','',30000,60000]]; return D.taille[A.piece]||[]; }
   function calc(){
-    var p=projet(), surf=Math.max(0,parseFloat(A.surface)||0), lo=0, hi=0, rows=[], parts=[p[1]];
-    if(p[3]==='formule'){
+    var p=projet(), surf=Math.max(0,parseFloat(A.surface)||0), lo=0, hi=0, rows=[], parts=[p[1]], moe=true;
+    if(p[0]==='archi'){
       var fo=find(D.formules,A.formule); lo=fo[0]==='plan-realite'?fo[3]*Math.max(surf,50):fo[3]; hi=fo[0]==='plan-realite'?fo[4]*Math.max(surf,50):fo[4];
       rows.push(['Conception · '+fo[1],fmt(lo)+(hi>lo?' à '+fmt(hi):'')]); parts.push(surf+' m²',fo[1]);
       return {lo:lo,hi:hi,txt:fmt(lo)+(hi>lo?' à '+fmt(hi):''),sum:parts.join(' · '),rows:rows};
     }
-    if(p[3]==='m2'){
-      if(p[0]==='extension'){lo=D.extension[0]*surf;hi=D.extension[1]*surf;} else {var et=find(D.etat[p[0]],A.etat);lo=et[3]*surf;hi=et[4]*surf;parts.push(et[1]);}
-      parts.push(surf+' m²');
-    } else { var ta=find(D.taille[p[0]],A.taille); lo=ta[3]; hi=ta[4]; parts.push(ta[1]); }
+    if(p[0]==='complete'){ var b=find(D.bien,A.bien); lo=b[3]*surf; hi=b[4]*surf; parts.push(b[1],surf+' m²'); }
+    else if(p[0]==='partielle'){ var pc=find(D.piece,A.piece); parts.push(pc[1]); if(pc[3]==='m2'){lo=pc[4]*surf;hi=pc[5]*surf;parts.push(surf+' m²');} else {var ta=find(tailleList(),A.taille);lo=ta[3];hi=ta[4];parts.push(ta[1]);} }
+    else { var ex=find(D.ext,A.ext); parts.push(ex[1]); if(ex[3]==='m2'){lo=ex[4]*surf;hi=ex[5]*surf;parts.push(surf+' m²');} else {var tb=find(tailleList(),A.taille);lo=tb[3];hi=tb[4];parts.push(tb[1]);} }
     var fi=find(D.finition,A.finition); if(fi[0]==='essentiel'){hi=lo+(hi-lo)*0.4;} else if(fi[0]==='premium'){lo=lo+(hi-lo)*0.6;hi=hi*1.15;} parts.push(fi[1]);
     rows.push(['Travaux (HT)',fmt(lo)+' à '+fmt(hi)]);
     var moeLo=lo*0.08, moeHi=hi*0.15; rows.push(['Maîtrise d’œuvre (8 à 15 %)',fmt(moeLo)+' à '+fmt(moeHi)]);
     var cLo=0,cHi=0, ac=find(D.accomp,A.accomp);
-    if(ac[0]==='conseils'){cLo=600;cHi=900;} else if(ac[0]==='complet'){ if(p[3]==='m2'){cLo=cHi=80*Math.max(surf,50);} else {cLo=1200;cHi=1800;} }
+    if(ac[0]==='conseils'){cLo=600;cHi=900;} else if(ac[0]==='complet'){ if(surf){cLo=cHi=80*Math.max(surf,50);} else {cLo=1200;cHi=1800;} }
     if(cLo) rows.push(['Conception (Marie)',fmt(cLo)+(cHi>cLo?' à '+fmt(cHi):'')]);
     var tLo=lo+moeLo+cLo, tHi=hi+moeHi+cHi;
     return {lo:tLo,hi:tHi,txt:fmt(tLo)+' à '+fmt(tHi),sum:parts.join(' · '),rows:rows};
   }
   function show(name){
     var sc=SCREENS[name](), fl=flow(), i=fl.indexOf(name);
-    steps.innerHTML='<div class="pstep on"><span class="qs">Étape '+(i+1)+' sur '+fl.length+'</span><h3 class="q">'+esc(sc.q)+'</h3>'+sc.h+(sc.next?'<div><button type="button" class="btn btn-primary next">Continuer</button></div>':'')+'</div>';
-    prog.style.width=Math.round((i+1)/fl.length*100)+'%';
+    steps.innerHTML='<div class="pstep on"><span class="qs">'+(A.projet?'Étape '+(i+1)+' sur '+fl.length:'Pour commencer')+'</span><h3 class="q">'+esc(sc.q)+'</h3>'+sc.h+(sc.next?'<div><button type="button" class="btn btn-primary next">Continuer</button></div>':'')+'</div>';
+    prog.style.width=(A.projet?Math.round((i+1)/fl.length*100):6)+'%';
     back.className='back'+(hist.length?' vis':'');
     if(A[name]) { var r=steps.querySelector('input[name="'+name+'"][value="'+A[name]+'"]'); if(r) r.checked=true; }
-    steps.querySelectorAll('input[type=radio]').forEach(function(r){r.addEventListener('change',function(){A[r.name]=r.value; setTimeout(function(){go(1)},180);});});
+    steps.querySelectorAll('input[type=radio]').forEach(function(r){r.addEventListener('change',function(){if(r.name==='projet'&&A.projet!==r.value){A={projet:r.value};} if((r.name==='piece'||r.name==='ext')&&A[r.name]!==r.value){delete A.taille;delete A.surface;} A[r.name]=r.value; setTimeout(function(){go(1)},180);});});
     var n=steps.querySelector('input[name=surface]'), rg=steps.querySelector('input[name=surfr]');
     if(n){ var sync=function(v){v=Math.max(5,Math.min(600,parseInt(v)||0));n.value=v;rg.value=v;A.surface=v;}; A.surface=parseInt(n.value); n.addEventListener('input',function(){sync(n.value)}); rg.addEventListener('input',function(){sync(rg.value)}); steps.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){sync(b.dataset.s);go(1);})}); steps.querySelector('.next').addEventListener('click',function(){go(1)}); }
     if(name==='coord') f.dataset.estimation=sc&&calc().txt+' HT';
@@ -1016,8 +1035,8 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
     e.preventDefault(); var st=f.querySelector('.status'); st.className='status'; st.textContent='Envoi en cours…';
     var btn=f.querySelector('button[type=submit]'); btn.disabled=true;
     var p=projet(), e2=calc(), lab=function(list,k){var o=list&&k?find(list,k):null;return o?o[1]:''};
-    var details=['Projet : '+p[1],A.surface?'Surface : '+A.surface+' m²':'',A.etat?'État : '+lab(D.etat[p[0]],A.etat):'',A.taille?'Taille/type : '+lab(D.taille[p[0]],A.taille):'',A.finition?'Finition : '+lab(D.finition,A.finition):'',A.accomp?'Accompagnement : '+lab(D.accomp,A.accomp):'',A.formule?'Formule : '+lab(D.formules,A.formule):'','Estimation affichée : '+e2.txt+' HT'].filter(Boolean).join('\n');
-    var body={name:f.name.value,phone:f.phone.value,email:f.email.value,city:f.city.value,message:(f.message.value||'')+'\n\n— Réponses du simulateur —\n'+details,projet:p[1],surface:String(A.surface||''),niveau:lab(D.finition,A.finition)||lab(D.formules,A.formule),delai:lab(D.delai,A.delai),estimation:e2.txt+' HT',source:SOURCE,consent:f.consent.checked,website:f.website.value};
+    var details=['Projet : '+p[1],A.bien?'Bien : '+lab(D.bien,A.bien):'',A.piece?'Pièce : '+lab(D.piece,A.piece):'',A.ext?'Type : '+lab(D.ext,A.ext):'',A.surface&&needSurface()?'Surface : '+A.surface+' m²':'',A.taille?'Taille/type : '+lab(tailleList(),A.taille):'',A.finition?'Finition : '+lab(D.finition,A.finition):'',A.accomp?'Accompagnement : '+lab(D.accomp,A.accomp):'',A.formule?'Formule : '+lab(D.formules,A.formule):'','Estimation calculée : '+e2.txt+' HT'].filter(Boolean).join('\n');
+    var body={name:f.name.value,phone:f.phone.value,email:f.email.value,city:f.city.value,message:(f.message.value||'')+'\n\n— Réponses du simulateur —\n'+details,projet:p[1],surface:needSurface()?String(A.surface||''):'',niveau:lab(D.finition,A.finition)||lab(D.formules,A.formule),delai:lab(D.delai,A.delai),estimation:e2.txt+' HT',source:SOURCE,consent:f.consent.checked,website:f.website.value};
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})}).then(function(r){
       if(r.ok){ steps.innerHTML='<div class="ok"><strong>Merci, votre demande est bien transmise.</strong><p>Marie ou Alexandre étudient votre projet et reviennent vers vous le plus rapidement possible avec une première estimation.</p>'+(f.email.value?'<p>Un e-mail de confirmation vient de vous être envoyé à '+esc(f.email.value)+'.</p>':'')+'</div>'; back.className='back'; prog.style.width='100%'; }
       else { btn.disabled=false; st.className='status err'; st.textContent=(r.j&&r.j.error)||'Votre demande n’a pas pu être transmise. Appelez-nous au 06 99 06 59 94.'; if(r.j&&r.j.field&&f[r.j.field]) f[r.j.field].focus(); }
