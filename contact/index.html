@@ -784,6 +784,13 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .sim .card{position:relative;display:grid;gap:4px;padding:16px 18px;border:1.5px solid var(--line);border-radius:16px;background:var(--surface);cursor:pointer;min-height:64px;transition:border-color .15s,box-shadow .15s}
 .sim .card:hover{border-color:var(--sage)}
 .sim .card input{position:absolute;inset:0;opacity:0;cursor:pointer;margin:0}
+.sim .card.has-i{grid-template-columns:auto 1fr;align-items:center;gap:14px}
+.sim .ci{width:26px;height:26px;color:var(--forest);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.sim .ct{display:grid;gap:3px}
+.sim .q{display:flex;align-items:center;gap:14px}
+.sim .qb{flex:none;width:46px;height:46px;border-radius:50%;background:var(--sage-2);display:grid;place-items:center}
+.sim .qi{width:22px;height:22px;color:var(--forest);fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sim .ri{width:20px;height:20px;color:var(--forest);fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-right:10px;vertical-align:-4px}
 .sim .card b{font-weight:600;font-size:1rem;color:var(--ink)}
 .sim .card small{font-size:.86rem;color:var(--ink-2);font-weight:500;line-height:1.35}
 .sim .card.sel,.sim .card:has(input:checked){border-color:var(--forest);box-shadow:0 0 0 3px rgba(58,92,72,.15);background:#F2F6F3}
@@ -794,6 +801,14 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 .sim .chips{display:flex;flex-wrap:wrap;gap:8px}
 .sim .chips button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:8px 14px;font:600 .9rem var(--sans);color:var(--ink);cursor:pointer}
 .sim .chips button:hover{border-color:var(--forest)}
+.sim .rooms{display:grid;gap:8px}
+.sim .room{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px 10px 18px;border:1.5px solid var(--line);border-radius:14px;background:var(--surface)}
+.sim .room.on{border-color:var(--forest);background:#F2F6F3}
+.sim .room b{font-weight:600}
+.sim .cnt{display:flex;align-items:center;gap:4px}
+.sim .cnt button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);font:600 1.2rem var(--sans);color:var(--forest);cursor:pointer;line-height:1}
+.sim .cnt button:hover{border-color:var(--forest)}
+.sim .cnt output{min-width:28px;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
 .sim .nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:4px}
 .sim .nav .back{background:none;border:0;color:var(--ink-2);font:600 .95rem var(--sans);cursor:pointer;padding:10px 0;visibility:hidden}
 .sim .nav .back.vis{visibility:visible}
@@ -884,6 +899,10 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 
 
 
+
+
+
+
 <form class="sim" id="sim" novalidate>
   <div class="prog" aria-hidden="true"><i></i></div>
   <div class="steps"></div>
@@ -959,7 +978,7 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
 
 <script>
 (function(){
-  var D={"projets": [["complete", "Rénovation complète", "Toute la maison ou tout l’appartement : sols, murs, cuisine, salle de bain, réseaux…"], ["partielle", "Rénovation partielle", "Une pièce ou un espace : salle de bain, cuisine, séjour, extérieur…"], ["extension", "Extension", "Agrandir : extension, surélévation, pool house"], ["archi", "Architecture d’intérieur", "Plans, 3D, matériaux, suivi — avec Marie"]], "bien": [["maison", "Une maison", "Toiture, isolation, façades et intérieurs possibles", 800, 1800], ["appart", "Un appartement", "Sols, murs, cuisine et salle de bain, réseaux aux normes", 400, 900], ["pro", "Un local professionnel", "Boutique, bureau, cabinet", 400, 1200]], "piece": [["sdb", "La salle de bain", "Douche à l’italienne, béton ciré, meubles sur mesure", "forfait", 0, 0], ["cuisine", "La cuisine", "Ouverte, fermée, avec îlot…", "forfait", 0, 0], ["piece", "Une pièce à vivre ou une chambre", "Peinture, sols, rangements, cloisons", "m2", 150, 400], ["exterieur", "L’extérieur", "Terrasse, salon encastré, cuisine d’été", "forfait", 0, 0]], "taille": {"sdb": [["petite", "Petite", "Moins de 5 m²", 3000, 7000], ["moyenne", "Moyenne", "5 à 8 m²", 6000, 11000], ["grande", "Grande", "Plus de 8 m², double vasque, baignoire + douche", 9000, 15000]], "cuisine": [["petite", "Petite", "Moins de 8 m²", 5000, 12000], ["moyenne", "Moyenne", "8 à 15 m²", 10000, 20000], ["grande", "Grande", "Plus de 15 m², îlot, électroménager intégré", 18000, 30000]], "exterieur": [["terrasse", "Terrasse ou salon extérieur", "Terrasse, salon encastré, pergola", 8000, 25000], ["cuisine-ete", "Cuisine d’été", "Plan de travail, évier, plancha, rangements", 15000, 40000]]}, "ext": [["extension", "Une extension de plain-pied", "Ossature bois ou maçonnée", "m2", 1500, 2500], ["surelevation", "Une surélévation", "Un étage en plus", "m2", 1800, 2800], ["pool-house", "Un pool house", "Abri simple à pool house aménagé", "forfait", 15000, 60000]], "finition": [["essentiel", "Essentiel", "Matériaux simples et durables"], ["confort", "Confort", "Le bon équilibre, nos choix habituels"], ["premium", "Haut de gamme", "Sur-mesure, matériaux nobles"]], "accomp": [["non", "Les travaux seulement", "Alexandre pilote le chantier"], ["conseils", "Quelques conseils déco", "Marie vous aide à faire les bons choix"], ["complet", "La conception complète", "Plans, 3D, matériaux et suivi par Marie"]], "formules": [["potentiel", "Étude du potentiel", "Visite, conseils, premières pistes", 600, 900], ["complete", "Étude complète", "Plans, 3D, planches matériaux", 1200, 1800], ["plan-realite", "Du plan à la réalité", "Conception et suivi complet des travaux", 80, 80]], "budget": [["<10", "Moins de 10 000 €", ""], ["10-39", "10 000 à 39 000 €", ""], ["40-59", "40 000 à 59 000 €", ""], ["60-99", "60 000 à 99 000 €", ""], ["100-200", "100 000 à 200 000 €", ""], [">200", "Plus de 200 000 €", ""]], "delai": [["asap", "Dès que possible", ""], ["3mois", "Dans les 3 mois", ""], ["6mois", "Dans 3 à 6 mois", ""], ["plus-tard", "Plus tard, je me renseigne", ""]]}, ENDPOINT="https://artimano.fr/api/public/vitrine/dmb-and-co/demande", SOURCE="dmb-renovation.fr/contact";
+  var D={"icons": {"home": "<path d=\"M3 11 12 3l9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "hammer": "<path d=\"m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9\"/><path d=\"M17.64 15 22 10.64\"/><path d=\"m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91\"/>", "plan": "<path d=\"M4 4h16v16H4z\"/><path d=\"M4 12h8\"/><path d=\"M12 4v8\"/><path d=\"M12 12v8\"/><path d=\"M12 16h8\"/>", "palette": "<circle cx=\"13.5\" cy=\"6.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"17.5\" cy=\"10.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"8.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\"/><circle cx=\"6.5\" cy=\"12.5\" r=\".5\" fill=\"currentColor\"/><path d=\"M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z\"/>", "wallet": "<path d=\"M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1\"/><path d=\"M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4\"/>", "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\"/><path d=\"m14.5 12.5 2-2\"/><path d=\"m11.5 9.5 2-2\"/><path d=\"m8.5 6.5 2-2\"/><path d=\"m17.5 15.5 2-2\"/>", "users": "<path d=\"M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2\"/><circle cx=\"9\" cy=\"7\" r=\"4\"/><path d=\"M22 21v-2a4 4 0 0 0-3-3.87\"/><path d=\"M16 3.13a4 4 0 0 1 0 7.75\"/>", "check": "<path d=\"M20 6 9 17l-5-5\"/>", "bed": "<path d=\"M2 4v16\"/><path d=\"M2 8h18a2 2 0 0 1 2 2v10\"/><path d=\"M2 17h20\"/><path d=\"M6 8v9\"/>", "sun": "<circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 2v2\"/><path d=\"M12 20v2\"/><path d=\"m4.93 4.93 1.41 1.41\"/><path d=\"m17.66 17.66 1.41 1.41\"/><path d=\"M2 12h2\"/><path d=\"M20 12h2\"/><path d=\"m6.34 17.66-1.41 1.41\"/><path d=\"m19.07 4.93-1.41 1.41\"/>", "key": "<path d=\"m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4\"/><path d=\"m21 2-9.6 9.6\"/><circle cx=\"7.5\" cy=\"15.5\" r=\"5.5\"/>", "eye": "<path d=\"M2.06 12.35a1 1 0 0 1 0-.7 10.5 10.5 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.5 10.5 0 0 1-19.88 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/>", "briefcase": "<path d=\"M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16\"/><rect width=\"20\" height=\"14\" x=\"2\" y=\"6\" rx=\"2\"/>", "leaf": "<path d=\"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z\"/><path d=\"M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12\"/>", "star": "<path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/>"}, "qicon": {"projet": "plan", "budget": "wallet", "surface": "ruler", "pieces": "home", "archi": "palette", "suivi": "hammer", "coord": "users"}, "projets": [["complete", "Rénovation complète", "Toute la maison ou tout l’appartement : sols, murs, cuisine, salle de bain, réseaux…", "home"], ["partielle", "Rénovation partielle", "Une ou plusieurs pièces : salle de bain, cuisine, séjour, extérieur…", "hammer"], ["extension", "Extension", "Agrandir : extension, surélévation, pool house", "plan"], ["archi", "Architecture d’intérieur", "Plans, 3D, matériaux, suivi — avec Marie", "palette"]], "budget": [["<10", "Moins de 10 000 €", ""], ["10-39", "10 000 à 39 000 €", ""], ["40-59", "40 000 à 59 000 €", ""], ["60-99", "60 000 à 99 000 €", ""], ["100-200", "100 000 à 200 000 €", ""], [">200", "Plus de 200 000 €", ""]], "pieces": [["chambre", "Chambre", 3000, 9000, "bed"], ["salon", "Salon / séjour", 5000, 18000, "home"], ["cuisine", "Cuisine", 5000, 30000, "hammer"], ["sdb", "Salle de bain", 3000, 15000, "leaf"], ["wc", "WC", 1500, 4000, "key"], ["bureau", "Bureau", 2500, 8000, "briefcase"], ["entree", "Entrée / couloir", 1500, 6000, "plan"], ["exterieur", "Extérieur / terrasse", 8000, 40000, "sun"], ["autre", "Autre", 2000, 10000, "star"]], "m2": {"complete": [400, 1800], "extension": [1500, 2800], "partielle": [150, 400], "archi": [0, 0]}, "oui": [["oui", "Oui", "", "check"], ["non", "Non", "", ""], ["jsp", "Je ne sais pas encore", "", "eye"]]}, ENDPOINT="https://artimano.fr/api/public/vitrine/dmb-and-co/demande", SOURCE="dmb-renovation.fr/contact";
   var f=document.getElementById('sim'); if(!f) return;
   var steps=f.querySelector('.steps'), prog=f.querySelector('.prog i'), back=f.querySelector('.back');
   var A={};               // réponses
@@ -967,83 +986,65 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
   var eur=function(n){return Math.round(n/100)*100;}, fmt=function(n){return eur(n).toLocaleString('fr-FR')+' €';};
   var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]});};
 
+  function svg(k,cls){return k&&D.icons[k]?'<svg class="'+(cls||'ci')+'" viewBox="0 0 24 24" aria-hidden="true">'+D.icons[k]+'</svg>':'';}
   function cards(name,list,cls){
-    return '<div class="cards '+(cls||'')+'">'+list.map(function(o){return '<label class="card"><input type="radio" name="'+name+'" value="'+esc(o[0])+'"><b>'+esc(o[1])+'</b>'+(o[2]?'<small>'+esc(o[2])+'</small>':'')+'</label>'}).join('')+'</div>';
+    return '<div class="cards '+(cls||'')+'">'+list.map(function(o){return '<label class="card'+(o[3]?' has-i':'')+'"><input type="radio" name="'+name+'" value="'+esc(o[0])+'">'+svg(o[3])+'<span class="ct"><b>'+esc(o[1])+'</b>'+(o[2]?'<small>'+esc(o[2])+'</small>':'')+'</span></label>'}).join('')+'</div>';
   }
   function projet(){return D.projets.find(function(p){return p[0]===A.projet})||D.projets[0];}
   function find(list,k){return list.find(function(o){return o[0]===k})||list[0];}
-  function needSurface(){
-    var p=A.projet;
-    if(p==='complete'||p==='archi') return true;
-    if(p==='partielle') return A.piece&&find(D.piece,A.piece)[3]==='m2';
-    if(p==='extension') return A.ext&&find(D.ext,A.ext)[3]==='m2';
-    return false;
-  }
-  function flow(){
-    var p=A.projet, s=['projet'];
-    if(p==='complete'){ s.push('budget','bien','surface','finition','accomp'); }
-    else if(p==='partielle'){ s.push('budget','piece'); if(A.piece){ if(find(D.piece,A.piece)[3]==='m2') s.push('surface'); else s.push('taille'); } s.push('finition','accomp'); }
-    else if(p==='extension'){ s.push('budget','ext'); if(A.ext){ if(find(D.ext,A.ext)[3]==='m2') s.push('surface'); else s.push('taille'); } s.push('finition','accomp'); }
-    else if(p==='archi'){ s.push('budget','surface','formule'); }
-    s.push('delai','coord'); return s;
-  }
+  function needSurface(){return true;}
+  function flow(){return ['projet','budget','surface','pieces','archi','suivi','coord'];}
   function surfDefaults(){
     if(A.projet==='extension') return {v:30,max:150,chips:[15,20,30,40,60]};
-    if(A.projet==='partielle') return {v:25,max:120,chips:[12,20,25,35,50]};
+    if(A.projet==='partielle') return {v:25,max:150,chips:[12,20,25,35,50,80]};
     return {v:100,max:400,chips:[40,60,80,100,130,180]};
   }
+  A.rooms=A.rooms||{};
+  function roomsHtml(){return '<div class="rooms">'+D.pieces.map(function(r){var n=A.rooms[r[0]]||0;return '<div class="room'+(n?' on':'')+'" data-k="'+r[0]+'"><b>'+svg(r[4],'ri')+esc(r[1])+'</b><span class="cnt"><button type="button" data-d="-1" aria-label="Retirer">−</button><output>'+n+'</output><button type="button" data-d="1" aria-label="Ajouter">+</button></span></div>'}).join('')+'</div>';}
+  function roomsSum(){return D.pieces.filter(function(r){return A.rooms[r[0]]}).map(function(r){var n=A.rooms[r[0]],l=r[1].toLowerCase();return n>1?n+' '+l.replace(/^(chambre|cuisine|salle de bain|bureau|entrée)/,'$1s'):l}).join(', ');}
   var SCREENS={
     projet:function(){return {q:'Quel est votre projet ?',h:cards('projet',D.projets,'c2')}},
-    bien:function(){return {q:'De quel type de bien s’agit-il ?',h:cards('bien',D.bien,'c3')}},
-    piece:function(){return {q:'Quelle pièce souhaitez-vous rénover ?',h:cards('piece',D.piece)}},
-    ext:function(){return {q:'Que souhaitez-vous construire ?',h:cards('ext',D.ext,'c3')}},
-    surface:function(){var d=surfDefaults(), t=A.projet==='extension'?'Quelle surface souhaitez-vous créer ?':A.projet==='partielle'?'Quelle est la surface de la pièce ?':'Quelle surface est concernée ?';
-      return {q:t,h:'<div class="surf"><div class="big"><input type="number" name="surface" min="5" max="600" step="1" inputmode="numeric" value="'+(A.surface||d.v)+'"> <span>m²</span></div><input type="range" name="surfr" min="5" max="'+d.max+'" step="5" value="'+(A.surface||d.v)+'"><div class="chips">'+d.chips.map(function(v){return '<button type="button" data-s="'+v+'">'+v+' m²</button>'}).join('')+'</div></div>',next:true}},
-    taille:function(){var k=A.projet==='extension'?'pool-house':A.piece; var list=k==='pool-house'?[['simple','Abri simple','Local technique, rangement, douche',15000,30000],['amenage','Pool house aménagé','Cuisine d’été, salon, sanitaires',30000,60000]]:D.taille[k];
-      return {q:k==='exterieur'?'Que souhaitez-vous aménager ?':k==='pool-house'?'Quel type de pool house ?':'Quelle taille fait la pièce ?',h:cards('taille',list,'c3')}},
-    finition:function(){return {q:'Quel niveau de finition imaginez-vous ?',h:cards('finition',D.finition,'c3')}},
-    accomp:function(){return {q:'Souhaitez-vous être accompagné(e) pour la conception ?',h:cards('accomp',D.accomp,'c3')}},
-    formule:function(){return {q:'Quelle formule vous correspond ?',h:cards('formule',D.formules,'c3')}},
     budget:function(){return {q:'Quel budget envisagez-vous pour les travaux ?',h:cards('budget',D.budget,'cb')}},
-    delai:function(){return {q:'Quand souhaitez-vous démarrer ?',h:cards('delai',D.delai,'c3')}},
-    coord:function(){var e=calc(); return {q:'Dernière étape : vos coordonnées',h:
-      '<div class="sim-res"><span class="lbl">Votre projet</span><div class="sub" style="font-size:1.05rem;color:var(--on-dark)">'+esc(e.sum)+'</div><p class="warn">Marie ou Alexandre étudient ces réponses et reviennent vers vous le plus rapidement possible avec une première estimation, travaux et honoraires compris. Une visite permet ensuite un chiffrage précis, poste par poste.</p></div>'+
+    surface:function(){var d=surfDefaults(), t=A.projet==='extension'?'Quelle surface souhaitez-vous créer ?':'Quelle surface est concernée par le projet ?';
+      return {q:t,h:'<div class="surf"><div class="big"><input type="number" name="surface" min="5" max="600" step="1" inputmode="numeric" value="'+(A.surface||d.v)+'"> <span>m²</span></div><input type="range" name="surfr" min="5" max="'+d.max+'" step="5" value="'+(A.surface||d.v)+'"><div class="chips">'+d.chips.map(function(v){return '<button type="button" data-s="'+v+'">'+v+' m²</button>'}).join('')+'</div></div>',next:true}},
+    pieces:function(){return {q:'Quelles pièces sont concernées, et combien ?',h:roomsHtml(),next:true}},
+    archi:function(){return {q:'Souhaitez-vous être accompagné(e) d’une architecte d’intérieur pour la conception ?',h:cards('archi',D.oui,'c3')}},
+    suivi:function(){return {q:'Souhaitez-vous un accompagnement et un suivi de chantier ?',h:cards('suivi',D.oui,'c3')}},
+    coord:function(){var e=calc(); return {q:'Vos coordonnées pour obtenir votre estimation personnalisée',h:
+      '<div class="sim-res"><span class="lbl">Votre projet</span><div class="sub" style="font-size:1.05rem;color:var(--on-dark)">'+esc(e.sum)+'</div><p class="warn">Marie ou Alexandre étudient ces réponses et reviennent vers vous le plus rapidement possible avec une estimation personnalisée, travaux et honoraires compris. Une visite permet ensuite un chiffrage précis, poste par poste.</p></div>'+
       '<div class="row2"><label class="field">Nom<input type="text" name="name" autocomplete="name" required></label><label class="field">Téléphone<input type="tel" name="phone" autocomplete="tel" inputmode="tel"></label></div>'+
       '<div class="row2"><label class="field">E-mail<input type="email" name="email" autocomplete="email" inputmode="email"></label><label class="field">Commune du projet<input type="text" name="city" autocomplete="address-level2" placeholder="ex. Langon"></label></div>'+
       '<label class="field">Un mot sur votre projet (facultatif)<textarea name="message" rows="3" maxlength="1200"></textarea></label>'+
       '<label class="hp" aria-hidden="true">Site web<input type="text" name="website" tabindex="-1" autocomplete="off"></label>'+
       '<label class="consent"><input type="checkbox" name="consent" required> J’accepte que mes coordonnées et ma demande soient transmises à DMB &amp; CO pour être recontacté(e). Aucun autre usage.</label>'+
-      '<button class="btn btn-primary" type="submit">Recevoir ma première estimation</button><p class="status" role="status" aria-live="polite"></p>'}}
+      '<button class="btn btn-primary" type="submit">Recevoir mon estimation personnalisée</button><p class="status" role="status" aria-live="polite"></p>'}}
   };
-  function tailleList(){ if(A.projet==='extension') return [['simple','Abri simple','',15000,30000],['amenage','Pool house aménagé','',30000,60000]]; return D.taille[A.piece]||[]; }
+  // Calcul interne (jamais affiché au visiteur) : envoyé à DMB avec la demande
   function calc(){
-    var p=projet(), surf=Math.max(0,parseFloat(A.surface)||0), lo=0, hi=0, rows=[], parts=[p[1]], moe=true;
-    if(p[0]==='archi'){
-      var fo=find(D.formules,A.formule); lo=fo[0]==='plan-realite'?fo[3]*Math.max(surf,50):fo[3]; hi=fo[0]==='plan-realite'?fo[4]*Math.max(surf,50):fo[4];
-      rows.push(['Conception · '+fo[1],fmt(lo)+(hi>lo?' à '+fmt(hi):'')]); parts.push(surf+' m²',fo[1]);
-      return {lo:lo,hi:hi,txt:fmt(lo)+(hi>lo?' à '+fmt(hi):''),sum:parts.join(' · '),rows:rows};
-    }
-    if(p[0]==='complete'){ var b=find(D.bien,A.bien); lo=b[3]*surf; hi=b[4]*surf; parts.push(b[1],surf+' m²'); }
-    else if(p[0]==='partielle'){ var pc=find(D.piece,A.piece); parts.push(pc[1]); if(pc[3]==='m2'){lo=pc[4]*surf;hi=pc[5]*surf;parts.push(surf+' m²');} else {var ta=find(tailleList(),A.taille);lo=ta[3];hi=ta[4];parts.push(ta[1]);} }
-    else { var ex=find(D.ext,A.ext); parts.push(ex[1]); if(ex[3]==='m2'){lo=ex[4]*surf;hi=ex[5]*surf;parts.push(surf+' m²');} else {var tb=find(tailleList(),A.taille);lo=tb[3];hi=tb[4];parts.push(tb[1]);} }
-    var fi=find(D.finition,A.finition); if(fi[0]==='essentiel'){hi=lo+(hi-lo)*0.4;} else if(fi[0]==='premium'){lo=lo+(hi-lo)*0.6;hi=hi*1.15;} parts.push(fi[1]);
-    rows.push(['Travaux (HT)',fmt(lo)+' à '+fmt(hi)]);
-    var moeLo=lo*0.08, moeHi=hi*0.15; rows.push(['Maîtrise d’œuvre (8 à 15 %)',fmt(moeLo)+' à '+fmt(moeHi)]);
-    var cLo=0,cHi=0, ac=find(D.accomp,A.accomp);
-    if(ac[0]==='conseils'){cLo=600;cHi=900;} else if(ac[0]==='complet'){ if(surf){cLo=cHi=80*Math.max(surf,50);} else {cLo=1200;cHi=1800;} }
-    if(cLo) rows.push(['Conception (Marie)',fmt(cLo)+(cHi>cLo?' à '+fmt(cHi):'')]);
+    var p=projet(), surf=Math.max(0,parseFloat(A.surface)||0), lo=0, hi=0, rows=[], parts=[p[1]];
+    var rs=roomsSum(); parts.push(surf+' m²'); if(rs) parts.push(rs);
+    if(p[0]==='partielle'){
+      D.pieces.forEach(function(r){var n=A.rooms[r[0]]||0; lo+=n*r[2]; hi+=n*r[3];});
+      if(!lo){lo=D.m2.partielle[0]*surf;hi=D.m2.partielle[1]*surf;}
+    } else if(p[0]!=='archi'){ lo=D.m2[p[0]][0]*surf; hi=D.m2[p[0]][1]*surf; }
+    if(lo) rows.push(['Travaux (HT)',fmt(lo)+' à '+fmt(hi)]);
+    var moeLo=0,moeHi=0; if(lo&&A.suivi!=='non'){moeLo=lo*0.08;moeHi=hi*0.15;rows.push(['Maîtrise d’œuvre (8 à 15 %)',fmt(moeLo)+' à '+fmt(moeHi)]);}
+    var cLo=0,cHi=0; if(p[0]==='archi'||A.archi==='oui'){cLo=cHi=80*Math.max(surf,50);rows.push(['Conception (Marie)',fmt(cLo)]);} else if(A.archi==='jsp'){cLo=600;cHi=80*Math.max(surf,50);rows.push(['Conception (Marie), si retenue',fmt(cLo)+' à '+fmt(cHi)]);}
     var tLo=lo+moeLo+cLo, tHi=hi+moeHi+cHi;
-    return {lo:tLo,hi:tHi,txt:fmt(tLo)+' à '+fmt(tHi),sum:parts.join(' · '),rows:rows};
+    if(A.archi==='jsp'&&p[0]!=='archi'){tLo=lo+moeLo;}
+    return {lo:tLo,hi:tHi,txt:fmt(tLo)+(tHi>tLo?' à '+fmt(tHi):''),sum:parts.join(' · '),rows:rows};
   }
   function show(name){
     var sc=SCREENS[name](), fl=flow(), i=fl.indexOf(name);
-    steps.innerHTML='<div class="pstep on"><span class="qs">'+(A.projet?'Étape '+(i+1)+' sur '+fl.length:'Pour commencer')+'</span><h3 class="q">'+esc(sc.q)+'</h3>'+sc.h+(sc.next?'<div><button type="button" class="btn btn-primary next">Continuer</button></div>':'')+'</div>';
+    steps.innerHTML='<div class="pstep on"><span class="qs">'+(A.projet?'Étape '+(i+1)+' sur '+fl.length:'Pour commencer')+'</span><h3 class="q"><span class="qb">'+svg(D.qicon[name],'qi')+'</span>'+esc(sc.q)+'</h3>'+sc.h+(sc.next?'<div><button type="button" class="btn btn-primary next">Continuer</button></div>':'')+'</div>';
     prog.style.width=(A.projet?Math.round((i+1)/fl.length*100):6)+'%';
     back.className='back'+(hist.length?' vis':'');
     if(A[name]) { var r=steps.querySelector('input[name="'+name+'"][value="'+A[name]+'"]'); if(r) r.checked=true; }
-    steps.querySelectorAll('input[type=radio]').forEach(function(r){r.addEventListener('change',function(){if(r.name==='projet'&&A.projet!==r.value){A={projet:r.value};} if((r.name==='piece'||r.name==='ext')&&A[r.name]!==r.value){delete A.taille;delete A.surface;} A[r.name]=r.value; setTimeout(function(){go(1)},180);});});
+    steps.querySelectorAll('input[type=radio]').forEach(function(r){r.addEventListener('change',function(){if(r.name==='projet'&&A.projet!==r.value){A={projet:r.value,rooms:{}};} A[r.name]=r.value; setTimeout(function(){go(1)},180);});});
     var n=steps.querySelector('input[name=surface]'), rg=steps.querySelector('input[name=surfr]');
     if(n){ var sync=function(v){v=Math.max(5,Math.min(600,parseInt(v)||0));n.value=v;rg.value=v;A.surface=v;}; A.surface=parseInt(n.value); n.addEventListener('input',function(){sync(n.value)}); rg.addEventListener('input',function(){sync(rg.value)}); steps.querySelectorAll('.chips button').forEach(function(b){b.addEventListener('click',function(){sync(b.dataset.s);go(1);})}); steps.querySelector('.next').addEventListener('click',function(){go(1)}); }
+    steps.querySelectorAll('.room').forEach(function(row){row.querySelectorAll('.cnt button').forEach(function(bt){bt.addEventListener('click',function(){var k=row.dataset.k,n=Math.max(0,Math.min(9,(A.rooms[k]||0)+parseInt(bt.dataset.d)));A.rooms[k]=n;row.querySelector('output').textContent=n;row.className='room'+(n?' on':'');});});});
+    var nx=steps.querySelector('.next'); if(nx&&!n) nx.addEventListener('click',function(){go(1)});
     if(name==='coord') f.dataset.estimation=sc&&calc().txt+' HT';
     if(hist.length) steps.scrollIntoView({behavior:'smooth',block:'start'});
   }
@@ -1057,8 +1058,9 @@ mark.ph{background:color-mix(in srgb,#E3BD3C 28%,transparent);color:inherit;padd
     e.preventDefault(); var st=f.querySelector('.status'); st.className='status'; st.textContent='Envoi en cours…';
     var btn=f.querySelector('button[type=submit]'); btn.disabled=true;
     var p=projet(), e2=calc(), lab=function(list,k){var o=list&&k?find(list,k):null;return o?o[1]:''};
-    var details=['Projet : '+p[1],A.budget?'Budget envisagé : '+lab(D.budget,A.budget):'',A.bien?'Bien : '+lab(D.bien,A.bien):'',A.piece?'Pièce : '+lab(D.piece,A.piece):'',A.ext?'Type : '+lab(D.ext,A.ext):'',A.surface&&needSurface()?'Surface : '+A.surface+' m²':'',A.taille?'Taille/type : '+lab(tailleList(),A.taille):'',A.finition?'Finition : '+lab(D.finition,A.finition):'',A.accomp?'Accompagnement : '+lab(D.accomp,A.accomp):'',A.formule?'Formule : '+lab(D.formules,A.formule):'','Estimation calculée : '+e2.txt+' HT'].filter(Boolean).join('\n');
-    var body={name:f.name.value,phone:f.phone.value,email:f.email.value,city:f.city.value,message:(f.message.value||'')+'\n\n— Réponses du simulateur —\n'+details,budget:lab(D.budget,A.budget),projet:p[1],surface:needSurface()?String(A.surface||''):'',niveau:lab(D.finition,A.finition)||lab(D.formules,A.formule),delai:lab(D.delai,A.delai),estimation:e2.txt+' HT',source:SOURCE,consent:f.consent.checked,website:f.website.value};
+    var oui=function(k){return A[k]?lab(D.oui,A[k]):''};
+    var details=['Projet : '+p[1],A.budget?'Budget envisagé : '+lab(D.budget,A.budget):'',A.surface?'Surface : '+A.surface+' m²':'',roomsSum()?'Pièces : '+roomsSum():'','Architecte d’intérieur (conception) : '+oui('archi'),'Suivi de chantier : '+oui('suivi'),'Estimation calculée (interne) : '+e2.txt+' HT'].filter(Boolean).join('\n');
+    var body={name:f.name.value,phone:f.phone.value,email:f.email.value,city:f.city.value,message:(f.message.value||'')+'\n\n— Réponses du simulateur —\n'+details,budget:lab(D.budget,A.budget),projet:p[1],surface:String(A.surface||''),niveau:'Architecte : '+oui('archi')+' · Suivi : '+oui('suivi'),delai:'',estimation:e2.txt+' HT',source:SOURCE,consent:f.consent.checked,website:f.website.value};
     fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})}).then(function(r){
       if(r.ok){ steps.innerHTML='<div class="ok"><strong>Merci, votre demande est bien transmise.</strong><p>Marie ou Alexandre étudient votre projet et reviennent vers vous le plus rapidement possible avec une première estimation.</p>'+(f.email.value?'<p>Un e-mail de confirmation vient de vous être envoyé à '+esc(f.email.value)+'.</p>':'')+'</div>'; back.className='back'; prog.style.width='100%'; }
       else { btn.disabled=false; st.className='status err'; st.textContent=(r.j&&r.j.error)||'Votre demande n’a pas pu être transmise. Appelez-nous au 06 99 06 59 94.'; if(r.j&&r.j.field&&f[r.j.field]) f[r.j.field].focus(); }
